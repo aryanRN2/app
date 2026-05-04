@@ -13,6 +13,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
+import * as FileSystem from 'expo-file-system';
 import { FileText, Upload, X } from 'lucide-react-native';
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      quality: 1,
+      quality: 0.8, // Slightly reduced quality to ensure PDF size is manageable
     });
 
     if (!result.canceled) {
@@ -36,11 +37,15 @@ export default function App() {
 
     setLoading(true);
     try {
-      // Create a simple HTML template with the image
+      // Read the image as a base64 string
+      const base64Image = await FileSystem.readAsStringAsync(image, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+
       const html = `
         <html>
           <body style="margin:0;padding:0;display:flex;justify-content:center;align-items:center;background-color:white;">
-            <img src="${image}" style="width:100%; height:auto;" />
+            <img src="data:image/jpeg;base64,${base64Image}" style="width:100%; height:auto;" />
           </body>
         </html>
       `;
