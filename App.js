@@ -69,8 +69,8 @@ export default function App() {
           <View style={styles.iconCircle}>
             <FileText size={32} color="#FFF" />
           </View>
-          <Text style={styles.title}>ImgToPDF</Text>
-          <Text style={styles.subtitle}>Real Android App • Native Output</Text>
+          <Text style={styles.title}>Aryan</Text>
+          <Text style={styles.subtitle}>Premium Document Suite</Text>
         </View>
 
         {!image ? (
@@ -106,7 +106,7 @@ export default function App() {
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Made for Seamless Android Use</Text>
+        <Text style={styles.footerText}>Powered by Aryan • More features coming soon</Text>
       </View>
     </SafeAreaView>
   );
